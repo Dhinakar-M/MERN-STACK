@@ -1,35 +1,35 @@
-import React, { useState } from 'react'
-import Navbar from './components/Navbar/Navbar'
-import { Route, Routes } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
-import Cart from './pages/Cart/Cart'
-import Footer from './components/Footer/Footer'
-import LoginPopup from './components/LoginPopup/LoginPopup'
-import Verify from './pages/Verify/Verify'
-import MyOrders from './pages/MyOrders/MyOrders'
-import Payment from './pages/payment'
+import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './App.css'
 
-const App = () => {
+// Components
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
-  const [showLogin,setShowLogin] = useState(false)
+// Pages
+import HomePage from './pages/HomePage'
+import CartPage from './pages/CartPage'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import OrdersPage from './pages/OrdersPage'
 
+function App() {
   return (
-    <>
-    {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
-      <div className='app'>
-        <Navbar setShowLogin={setShowLogin} />
-        <Routes>
-          < Route path='/' element={<Home />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/order' element={<PlaceOrder />} />
-          {/* <Route path='/verify' element={<Verify/>}/> */}
-           <Route path='/myorders' element={<MyOrders/>}/>
-           <Route path="/payment/:orderId" element={<Payment />} />        </Routes>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <main className="content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-      <Footer />
-    </>
-
+    </Router>
   )
 }
 
